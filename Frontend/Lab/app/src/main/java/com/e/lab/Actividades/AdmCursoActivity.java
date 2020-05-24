@@ -8,28 +8,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
-import com.e.lab.AccesoDatos.ModelData;
-import com.e.lab.Adaptador.CarrerasAdapter;
-import com.e.lab.Adaptador.CursoAdapter;
-import com.e.lab.Helper.RecyclerItemTouchHelper;
-import com.e.lab.LogicaNeg.Curso;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-import android.widget.Toast;
-
+import com.e.lab.AccesoDatos.ModelData;
+import com.e.lab.Adaptador.CursoAdapter;
+import com.e.lab.Helper.RecyclerItemTouchHelper;
+import com.e.lab.LogicaNeg.Curso;
 import com.e.lab.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +87,7 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
             getWindow().setStatusBarColor(Color.parseColor("#0288D1"));
         }
     }
+
     @Override
     public void onContactSelected(Curso curso) { //TODO get the select item of recycleView
         Toast.makeText(getApplicationContext(), "Selected: " + curso.getCodigo() + ", " + curso.getNombre(), Toast.LENGTH_LONG).show();
@@ -149,7 +146,7 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
                 // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
 
-                Toast.makeText(getApplicationContext(), name+ " removido!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
             }
         } else {
             //If is editing a row object

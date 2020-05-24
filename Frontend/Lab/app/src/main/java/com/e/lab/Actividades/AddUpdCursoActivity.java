@@ -2,20 +2,16 @@ package com.e.lab.Actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.e.lab.LogicaNeg.Curso;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.e.lab.LogicaNeg.Curso;
 import com.e.lab.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddUpdCursoActivity extends AppCompatActivity {
 

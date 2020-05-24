@@ -24,30 +24,6 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
     private CursoAdapterListener listener;
     private Curso deletedItem;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView titulo1, titulo2, description;
-        //two layers
-        public RelativeLayout viewForeground, viewBackgroundDelete, viewBackgroundEdit;
-
-
-        public MyViewHolder(View view) {
-            super(view);
-            titulo1 = view.findViewById(R.id.titleFirstLbl);
-            titulo2 = view.findViewById(R.id.titleSecLbl);
-            description = view.findViewById(R.id.descriptionLbl);
-            viewBackgroundDelete = view.findViewById(R.id.view_background_delete);
-            viewBackgroundEdit = view.findViewById(R.id.view_background_edit);
-            viewForeground = view.findViewById(R.id.view_foreground);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // send selected contact in callback
-                    listener.onContactSelected(cursoListFiltered.get(getAdapterPosition()));
-                }
-            });
-        }
-    }
-
     public CursoAdapter(List<Curso> cursolist, CursoAdapterListener listener) {
         this.cursoList = cursolist;
         this.listener = listener;
@@ -170,5 +146,29 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
 
     public interface CursoAdapterListener {
         void onContactSelected(Curso curso);
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView titulo1, titulo2, description;
+        //two layers
+        public RelativeLayout viewForeground, viewBackgroundDelete, viewBackgroundEdit;
+
+
+        public MyViewHolder(View view) {
+            super(view);
+            titulo1 = view.findViewById(R.id.titleFirstLbl);
+            titulo2 = view.findViewById(R.id.titleSecLbl);
+            description = view.findViewById(R.id.descriptionLbl);
+            viewBackgroundDelete = view.findViewById(R.id.view_background_delete);
+            viewBackgroundEdit = view.findViewById(R.id.view_background_edit);
+            viewForeground = view.findViewById(R.id.view_foreground);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // send selected contact in callback
+                    listener.onContactSelected(cursoListFiltered.get(getAdapterPosition()));
+                }
+            });
+        }
     }
 }

@@ -68,7 +68,6 @@ public class NavDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-
         return super.onOptionsItemSelected(item);
     }
 

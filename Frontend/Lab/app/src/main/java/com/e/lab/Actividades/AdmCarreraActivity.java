@@ -13,7 +13,6 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -82,6 +81,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
 
 
     }
+
     private void whiteNotificationBar(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int flags = view.getSystemUiVisibility();
@@ -90,6 +90,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
             getWindow().setStatusBarColor(Color.parseColor("#0288D1"));
         }
     }
+
     private void checkIntentInformation() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -122,15 +123,18 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
             }
         }
     }
+
     @Override
     public void onContactSelected(Carrera carrera) { //TODO get the select item of recycleView
         Toast.makeText(getApplicationContext(), "Seleccionado: " + carrera.getCodigo() + ", " + carrera.getNombre(), Toast.LENGTH_LONG).show();
     }
+
     public void goToAddUpdCarrera() {
         Intent intent = new Intent(this, AddUpdCarreraActivity.class);
         intent.putExtra("editable", false);
         startActivity(intent);
     }
+
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (direction == ItemTouchHelper.START) {
@@ -144,7 +148,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
 
 
-                Toast.makeText(getApplicationContext(), name+ " removido!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
 
             }
         } else {
@@ -158,6 +162,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
             startActivity(intent);
         }
     }
+
     @Override
     public void onItemMove(int source, int target) {
         mAdapter.onItemMove(source, target);
