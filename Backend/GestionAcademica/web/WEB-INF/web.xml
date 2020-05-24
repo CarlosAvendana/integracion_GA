@@ -44,6 +44,14 @@
         <servlet-name>Service_Logout</servlet-name>
         <servlet-class>Controller.Service_Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Server_Movil_Carrera</servlet-name>
+        <servlet-class>Controller.Server_Movil_Carrera</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Server_Movil_Curso</servlet-name>
+        <servlet-class>Controller.Server_Movil_Curso</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Service_Lista_Carrera</servlet-name>
         <url-pattern>/Service_Lista_Carrera</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>Service_Logout</servlet-name>
         <url-pattern>/Service_Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Server_Movil_Carrera</servlet-name>
+        <url-pattern>/Server_Movil_Carrera</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Server_Movil_Curso</servlet-name>
+        <url-pattern>/Server_Movil_Curso</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
