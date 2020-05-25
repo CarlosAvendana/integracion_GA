@@ -15,7 +15,7 @@ public class Service_Edita_Curso extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Model model = new Model();
-            
+
             String _codigo = request.getParameter("ccf");
             String _carrera_codigo = request.getParameter("codcf");
             String _anio = request.getParameter("ancf");

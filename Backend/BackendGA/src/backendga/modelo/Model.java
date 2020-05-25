@@ -8,50 +8,30 @@ package backendga.modelo;
 import backendga.modelo.dao.GestorCarrera;
 import backendga.modelo.dao.GestorCurso;
 import backendga.modelo.dao.GestorUsuario;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 
-/**
- *
- * @author Luis Felipe
- */
 public class Model extends Observable {
 
     private Usuario user;
     
-    private TablaCarrera tablaCarrera;
-    private TablaCurso tablaCurso;
-    
-    private ArrayList<Carrera> carreras;
-    private ArrayList<Curso> cursos;
     
     GestorCurso gestorCurso;
     GestorCarrera gestorCarrera;
     
-    ComboBoxModel<String> CBCarrera;
-    
+   
 
     public Model() {
         this.user = new Usuario();
         this.gestorCarrera = new GestorCarrera();
-        this.carreras = new ArrayList();
-        this.tablaCarrera = new TablaCarrera(carreras);
         this.gestorCurso = new GestorCurso();
-        this.cursos = new ArrayList();
-        this.tablaCurso = new TablaCurso(cursos);
-        this.CBCarrera = new DefaultComboBoxModel<>();
+         
     }
 
     public Model(Usuario user) {
         this.user = user;
     }
 
-    //------------------------------------------------------------
-    //---------------------- MODEL USUARIO------------------------
-    //------------------------------------------------------------
+    
     public Usuario getUser() {
         return user;
     }
@@ -68,27 +48,7 @@ public class Model extends Observable {
         return result;
     }
 
-    //------------------------------------------------------------
-    //------------------- MODEL CARRERA---------------------------
-    //------------------------------------------------------------
-    public TablaCarrera getTablaCarrera() {
-        return tablaCarrera;
-    }
-
-    public void setTablaCarrera(ArrayList<Carrera> tabla) {
-        this.tablaCarrera = new TablaCarrera(tabla);
-    }
-
-    public ArrayList<Carrera> getCarreras() {
-        return carreras;
-    }
-
-    public void setCarreras(ArrayList<Carrera> carreras) {
-        this.carreras = carreras;
-        this.setTablaCarrera(carreras);
-        this.commit();
-    }
-
+    
     public GestorCarrera getGestorCarrera() {
         return gestorCarrera;
     }
@@ -97,28 +57,7 @@ public class Model extends Observable {
         this.gestorCarrera = gestorCarrera;
     }
 
-    //------------------------------------------------------------
-    //-----------------------MODEL CURSO--------------------------
-    //------------------------------------------------------------
-    
-     public TablaCurso getTablaCurso() {
-        return tablaCurso;
-    }
-
-    public void setTablaCurso(ArrayList<Curso> tabla) {
-        this.tablaCurso = new TablaCurso(tabla);
-    }
-
-    public ArrayList<Curso> getCursos() {
-        return cursos;
-    }
-
-    public void setCursos(ArrayList<Curso> cursos) {
-        this.cursos = cursos;
-        this.setTablaCurso(cursos);
-        this.commit();
-    }
-
+   
     public GestorCurso getGestorCurso() {
         return gestorCurso;
     }
@@ -127,15 +66,7 @@ public class Model extends Observable {
         this.gestorCurso = gestor;
     }
 
-    public ComboBoxModel<String> getCBCarrera() {
-        return this.CBCarrera;
-    }
-
-    public void setCBCarrera(List<String> carreras) {
-        this.CBCarrera = new DefaultComboBoxModel(carreras.toArray());
-        this.commit();
-    }
-    
+  
     
     @Override
     public void addObserver(java.util.Observer o) {
