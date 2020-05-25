@@ -46,7 +46,7 @@ public class NetManager extends AsyncTask<String, String, String> {
 
 
             try {
-                url = new URL(this.apiUrl);
+                url = new URL(this.ip);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Accept", "application/json");
 

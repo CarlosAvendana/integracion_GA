@@ -20,12 +20,17 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.lab.AccesoDatos.AsyncResponse;
 import com.e.lab.AccesoDatos.ModelData;
+import com.e.lab.AccesoDatos.NetManager;
 import com.e.lab.Adaptador.CursoAdapter;
 import com.e.lab.Helper.RecyclerItemTouchHelper;
 import com.e.lab.LogicaNeg.Curso;
 import com.e.lab.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +51,10 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
         setSupportActionBar(toolbar);
 
         mRecyclerView = findViewById(R.id.recycler_cursosFld);
-        cursoList = new ArrayList<>();
+       // cursoList = new ArrayList<>();
         model = new ModelData();
-        cursoList = model.getCursoList();
-        mAdapter = new CursoAdapter(cursoList, this);
+       // cursoList = model.getCursoList();
+       // mAdapter = new CursoAdapter(cursoList, this);
 
         whiteNotificationBar(mRecyclerView);
 
@@ -57,7 +62,29 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mRecyclerView.setAdapter(mAdapter);
+        NetManager net= new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso?opc=2", new AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                try {
+                    JSONArray array=new JSONArray(output);
+                    cursoList = new ArrayList<>();
+                    for(int i =0;i<array.length();i++){
+                        Curso curse = new Curso();
+                        curse.setCodigo(array.getJSONObject(i).getString("codigo"));
+                        curse.setCreditos(array.getJSONObject(i).getInt("creditos"));
+                        curse.setHoras(array.getJSONObject(i).getInt("horas"));
+                        curse.setNombre(array.getJSONObject(i).getString("nombre"));
+                        cursoList.add(curse);
+                    }
+                    mAdapter=new CursoAdapter(cursoList,AdmCursoActivity.this);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        net.execute(NetManager.GET);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +101,7 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
         checkIntentInformation();
 
         //refresh view
-        mAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
 
 
     }

@@ -20,12 +20,17 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.lab.AccesoDatos.AsyncResponse;
 import com.e.lab.AccesoDatos.ModelData;
+import com.e.lab.AccesoDatos.NetManager;
 import com.e.lab.Adaptador.CarrerasAdapter;
 import com.e.lab.Helper.RecyclerItemTouchHelper;
 import com.e.lab.LogicaNeg.Carrera;
 import com.e.lab.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +53,10 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         getSupportActionBar().setTitle("Carreras");
 
         mRecyclerView = findViewById(R.id.recycler_carrerasFld);
-        carreraList = new ArrayList<>();
+//        carreraList = new ArrayList<>();
         model = new ModelData();
-        carreraList = model.getCarreraList();
-        mAdapter = new CarrerasAdapter(carreraList, this);
+//        carreraList = model.getCarreraList();
+//        mAdapter = new CarrerasAdapter(carreraList, this);
 
         whiteNotificationBar(mRecyclerView);
 
@@ -59,7 +64,28 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mRecyclerView.setAdapter(mAdapter);
+        NetManager net= new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?opc=2", new AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                try {
+                    JSONArray array = new JSONArray(output);
+                    carreraList = new ArrayList<>();
+                    for(int i =0;i<array.length();i++){
+                       Carrera carreer = new Carrera();
+                       carreer.setCodigo(array.getJSONObject(i).getString("codigo"));
+                       carreer.setNombre(array.getJSONObject(i).getString("nombre"));
+                       carreer.setTitulo(array.getJSONObject(i).getString("titulo"));
+                       carreraList.add(carreer);
+                    }
+                    mAdapter = new CarrerasAdapter(carreraList, AdmCarreraActivity.this);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        net.execute(NetManager.GET);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +103,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         checkIntentInformation();
 
         //refresh view
-        mAdapter.notifyDataSetChanged();
+       // mAdapter.notifyDataSetChanged();
 
 
     }

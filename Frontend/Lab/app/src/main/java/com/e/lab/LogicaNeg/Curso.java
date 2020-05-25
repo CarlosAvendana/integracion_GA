@@ -24,6 +24,10 @@ public class Curso implements Serializable {
         this.horas = 0;
     }
 
+    public Curso() {
+
+    }
+
     public String getNombre() {
         return nombre;
     }
