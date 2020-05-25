@@ -25,7 +25,7 @@ public class Server_Movil_Curso extends HttpServlet {
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
         Model modelo = new Model();
 
         String _codigo = request.getParameter("codigo");
@@ -50,7 +50,7 @@ public class Server_Movil_Curso extends HttpServlet {
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
 
         Model model = new Model();
         String _codigo = request.getParameter("cursoCodigo");
@@ -76,7 +76,8 @@ public class Server_Movil_Curso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+
         Model modelo = new Model();
         String opc = request.getParameter("opc");
         String codigo = request.getParameter("codigo");
@@ -136,7 +137,7 @@ public class Server_Movil_Curso extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
 
         Model model = new Model();
 
