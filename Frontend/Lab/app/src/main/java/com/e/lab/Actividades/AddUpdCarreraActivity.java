@@ -74,9 +74,11 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
         if (validateForm()) {
             //do something
             Carrera car = new Carrera(codFld.getText().toString(), nomFld.getText().toString(), tituloFld.getText().toString());
+
             String cod=codFld.getText().toString();
             String nom=nomFld.getText().toString();
             String tit=tituloFld.getText().toString();
+
             JSONObject carreer = new JSONObject();
             try {
                 carreer.put("codigo",cod);
@@ -93,6 +95,7 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
                 }
             });
             net.execute(NetManager.PUT,carreer.toString());
+
             Intent intent = new Intent(getBaseContext(), AdmCarreraActivity.class);
             //sending carrera data
             intent.putExtra("addCarrera", car);
@@ -104,6 +107,27 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
     public void editCarrera() {
         if (validateForm()) {
             Carrera car = new Carrera(codFld.getText().toString(), nomFld.getText().toString(), tituloFld.getText().toString());
+
+            String cod=codFld.getText().toString();
+            String nom=nomFld.getText().toString();
+            String tit=tituloFld.getText().toString();
+
+            JSONObject carreer = new JSONObject();
+            try {
+                carreer.put("codigo",cod);
+                carreer.put("nombre",nom);
+                carreer.put("titulo",tit);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera", new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+
+                }
+            });
+            net.execute(NetManager.POST,carreer.toString());
+
             Intent intent = new Intent(getBaseContext(), AdmCarreraActivity.class);
             //sending carrera data
             intent.putExtra("editCarrera", car);
