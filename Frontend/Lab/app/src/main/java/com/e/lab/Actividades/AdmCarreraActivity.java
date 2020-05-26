@@ -64,18 +64,18 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        NetManager net= new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?opc=2", new AsyncResponse() {
+        NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?opc=2", new AsyncResponse() {
             @Override
             public void processFinish(String output) {
                 try {
                     JSONArray array = new JSONArray(output);
                     carreraList = new ArrayList<>();
-                    for(int i =0;i<array.length();i++){
-                       Carrera carreer = new Carrera();
-                       carreer.setCodigo(array.getJSONObject(i).getString("codigo"));
-                       carreer.setNombre(array.getJSONObject(i).getString("nombre"));
-                       carreer.setTitulo(array.getJSONObject(i).getString("titulo"));
-                       carreraList.add(carreer);
+                    for (int i = 0; i < array.length(); i++) {
+                        Carrera carreer = new Carrera();
+                        carreer.setCodigo(array.getJSONObject(i).getString("codigo"));
+                        carreer.setNombre(array.getJSONObject(i).getString("nombre"));
+                        carreer.setTitulo(array.getJSONObject(i).getString("titulo"));
+                        carreraList.add(carreer);
                     }
                     mAdapter = new CarrerasAdapter(carreraList, AdmCarreraActivity.this);
                     mRecyclerView.setAdapter(mAdapter);
@@ -103,7 +103,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         checkIntentInformation();
 
         //refresh view
-       // mAdapter.notifyDataSetChanged();
+        // mAdapter.notifyDataSetChanged();
 
 
     }

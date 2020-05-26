@@ -17,10 +17,15 @@ public class AddUpdCursoActivity extends AppCompatActivity {
 
     private FloatingActionButton fBtn;
     private boolean editable = true;
-    private EditText codFld;
-    private EditText nomFld;
-    private EditText creditosFld;
-    private EditText horasFld;
+
+    private EditText codFld; //1
+    private EditText nomFld; //2
+    private EditText creditosFld; //3
+    private EditText horasFld; //4
+    private EditText carrera_codigo;//5
+    private EditText anio;//6
+    private EditText ciclo;//7
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +41,17 @@ public class AddUpdCursoActivity extends AppCompatActivity {
         nomFld = findViewById(R.id.nombreAddUpdCur);
         creditosFld = findViewById(R.id.creditosAddUpdCur);
         horasFld = findViewById(R.id.horasAddUpdCur);
+        carrera_codigo = findViewById(R.id.carrera_codigoAddUpdCur);
+        anio = findViewById(R.id.anioAddUpdCur);
+        ciclo = findViewById(R.id.cicloAddUpdCur);
+
         codFld.setText("");
         nomFld.setText("");
         creditosFld.setText("");
         horasFld.setText("");
+        carrera_codigo.setText("");
+        anio.setText("");
+        ciclo.setText("");
 
         //receiving data from admCursoActivity
         Bundle extras = getIntent().getExtras();
@@ -53,6 +65,12 @@ public class AddUpdCursoActivity extends AppCompatActivity {
                 nomFld.setText(aux.getNombre());
                 creditosFld.setText(Integer.toString(aux.getCreditos()));
                 horasFld.setText(Integer.toString(aux.getHoras()));
+
+                carrera_codigo.setText(aux.getCarrera_codigo());
+                carrera_codigo.setEnabled(false);
+                anio.setText(aux.getAnio());
+                ciclo.setText(aux.getCiclo());
+
                 //edit action
                 fBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,9 +93,15 @@ public class AddUpdCursoActivity extends AppCompatActivity {
     public void addCurso() {
         if (validateForm()) {
             //do something
-            Curso cur = new Curso(codFld.getText().toString(), nomFld.getText().toString(),
+            Curso cur = new Curso(codFld.getText().toString(),
+                    carrera_codigo.getText().toString(),
+                    anio.getText().toString(),
+                    ciclo.getText().toString(),
+                    nomFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()),
                     Integer.parseInt(horasFld.getText().toString()));
+
+
             Intent intent = new Intent(getBaseContext(), AdmCursoActivity.class);
             //sending curso data
             intent.putExtra("addCurso", cur);
@@ -88,7 +112,11 @@ public class AddUpdCursoActivity extends AppCompatActivity {
 
     public void editCurso() {
         if (validateForm()) {
-            Curso cur = new Curso(codFld.getText().toString(), nomFld.getText().toString(),
+            Curso cur = new Curso(codFld.getText().toString(),
+                    carrera_codigo.getText().toString(),
+                    anio.getText().toString(),
+                    ciclo.getText().toString(),
+                    nomFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()),
                     Integer.parseInt(horasFld.getText().toString()));
             Intent intent = new Intent(getBaseContext(), AdmCursoActivity.class);

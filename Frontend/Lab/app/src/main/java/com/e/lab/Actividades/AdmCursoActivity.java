@@ -51,10 +51,10 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
         setSupportActionBar(toolbar);
 
         mRecyclerView = findViewById(R.id.recycler_cursosFld);
-       // cursoList = new ArrayList<>();
+        // cursoList = new ArrayList<>();
         model = new ModelData();
-       // cursoList = model.getCursoList();
-       // mAdapter = new CursoAdapter(cursoList, this);
+        // cursoList = model.getCursoList();
+        // mAdapter = new CursoAdapter(cursoList, this);
 
         whiteNotificationBar(mRecyclerView);
 
@@ -62,13 +62,13 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        NetManager net= new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso?opc=2", new AsyncResponse() {
+        NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso?opc=2", new AsyncResponse() {
             @Override
             public void processFinish(String output) {
                 try {
-                    JSONArray array=new JSONArray(output);
+                    JSONArray array = new JSONArray(output);
                     cursoList = new ArrayList<>();
-                    for(int i =0;i<array.length();i++){
+                    for (int i = 0; i < array.length(); i++) {
                         Curso curse = new Curso();
                         curse.setCodigo(array.getJSONObject(i).getString("codigo"));
                         curse.setCreditos(array.getJSONObject(i).getInt("creditos"));
@@ -76,7 +76,7 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
                         curse.setNombre(array.getJSONObject(i).getString("nombre"));
                         cursoList.add(curse);
                     }
-                    mAdapter=new CursoAdapter(cursoList,AdmCursoActivity.this);
+                    mAdapter = new CursoAdapter(cursoList, AdmCursoActivity.this);
                     mRecyclerView.setAdapter(mAdapter);
                     mAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -132,9 +132,15 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
                     boolean founded = false;
                     for (Curso curso : cursoList) {
                         if (curso.getCodigo().equals(aux.getCodigo())) {
+
                             curso.setNombre(aux.getNombre());
                             curso.setCreditos(aux.getCreditos());
                             curso.setHoras(aux.getHoras());
+                            curso.setAnio(aux.getAnio());
+                            curso.setCarrera_codigo(aux.getCarrera_codigo());
+                            curso.setCodigo(aux.getCodigo());
+                            curso.setCiclo(aux.getCiclo());
+
                             founded = true;
                             break;
                         }

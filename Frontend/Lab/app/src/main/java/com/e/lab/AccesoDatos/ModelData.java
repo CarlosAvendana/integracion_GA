@@ -120,8 +120,8 @@ public class ModelData {
         List<Usuario> users = new ArrayList<>();
 
         users.add(new Usuario("admin", "admin", "Administrador", "111"));
-        users.add(new Usuario("carlos", "carlos", "Carlos Obando", "111"));
-        users.add(new Usuario("felipe", "felipe", "Felipe Piedra", "111"));
+        users.add(new Usuario("carlos", "carlos", "Carlos Obando", "121"));
+        users.add(new Usuario("felipe", "felipe", "Felipe Piedra", "131"));
 
         return users;
     }
