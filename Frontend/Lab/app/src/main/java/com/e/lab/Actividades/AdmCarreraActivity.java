@@ -40,7 +40,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
 
     private RecyclerView mRecyclerView;
     private CarrerasAdapter mAdapter;
-    private List<Carrera> carreraList;
+    private List<Carrera> carreraList= new ArrayList<>();;
     private ModelData model;
     private SearchView searchView;
 
@@ -53,7 +53,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         getSupportActionBar().setTitle("Carreras");
 
         mRecyclerView = findViewById(R.id.recycler_carrerasFld);
-//        carreraList = new ArrayList<>();
+        //carreraList = new ArrayList<>();
         model = new ModelData();
 //        carreraList = model.getCarreraList();
 //        mAdapter = new CarrerasAdapter(carreraList, this);
@@ -162,16 +162,24 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
     }
 
     @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+    public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (direction == ItemTouchHelper.START) {
             if (viewHolder instanceof CarrerasAdapter.MyViewHolder) {
                 // get the removed item name to display it in snack bar
                 String name = carreraList.get(viewHolder.getAdapterPosition()).getNombre();
+                String delete = carreraList.get(viewHolder.getAdapterPosition()).getCodigo();
 
                 // save the index deleted
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
+                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?codigo="+delete, new AsyncResponse() {
+                    @Override
+                    public void processFinish(String output) {
+
+                    }
+                });
+                net.execute(NetManager.DELETE);
 
 
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();

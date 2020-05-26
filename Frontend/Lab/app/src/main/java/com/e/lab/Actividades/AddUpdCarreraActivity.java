@@ -9,9 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.e.lab.AccesoDatos.AsyncResponse;
+import com.e.lab.AccesoDatos.NetManager;
 import com.e.lab.LogicaNeg.Carrera;
 import com.e.lab.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AddUpdCarreraActivity extends AppCompatActivity {
 
@@ -69,6 +74,25 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
         if (validateForm()) {
             //do something
             Carrera car = new Carrera(codFld.getText().toString(), nomFld.getText().toString(), tituloFld.getText().toString());
+            String cod=codFld.getText().toString();
+            String nom=nomFld.getText().toString();
+            String tit=tituloFld.getText().toString();
+            JSONObject carreer = new JSONObject();
+            try {
+                carreer.put("codigo",cod);
+                carreer.put("nombre",nom);
+                carreer.put("titulo",tit);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?codigo="+cod+"&nombre="+nom+
+                    "&titulo="+tit, new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+
+                }
+            });
+            net.execute(NetManager.PUT,carreer.toString());
             Intent intent = new Intent(getBaseContext(), AdmCarreraActivity.class);
             //sending carrera data
             intent.putExtra("addCarrera", car);

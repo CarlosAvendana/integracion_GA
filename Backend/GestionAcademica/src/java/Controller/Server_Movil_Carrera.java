@@ -2,6 +2,7 @@ package Controller;
 
 import backendga.modelo.Carrera;
 import backendga.modelo.Model;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 public class Server_Movil_Carrera extends HttpServlet {
 
+    private Gson gson=new Gson();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -26,16 +29,17 @@ public class Server_Movil_Carrera extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         Model modelo = new Model();
-
-        String codigo = request.getParameter("codigo");
-        String nombre = request.getParameter("nombre");
-        String titulo = request.getParameter("titulo");
+        Carrera carrera = gson.fromJson(request.getReader(), Carrera.class);
+        
+        //String codigo = request.getParameter("codigo");
+        //String nombre = request.getParameter("nombre");
+        //String titulo = request.getParameter("titulo");
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             // out.println("<h5>Se insertara </h5>");
             //   out.println("<h5>Profe: " + p.getId() + p.getNombre() + "</h5>");
-            modelo.getGestorCarrera().insertarCarrera(codigo, nombre, titulo);
+            modelo.getGestorCarrera().insertarCarrera(carrera.getCodigo(),carrera.getNombre(),carrera.getTitulo());
         }
 
     }
