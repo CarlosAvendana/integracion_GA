@@ -1,8 +1,7 @@
-package com.e.lab.data;
+package com.e.lab.ui.login;
 
 import com.e.lab.AccesoDatos.ModelData;
 import com.e.lab.LogicaNeg.Usuario;
-import com.e.lab.data.model.LoggedInUser;
 
 import java.io.IOException;
 import java.util.List;

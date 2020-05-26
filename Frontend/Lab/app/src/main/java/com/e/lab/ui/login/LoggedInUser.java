@@ -1,4 +1,4 @@
-package com.e.lab.data.model;
+package com.e.lab.ui.login;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

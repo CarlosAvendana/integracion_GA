@@ -1,6 +1,4 @@
-package com.e.lab.data;
-
-import com.e.lab.data.model.LoggedInUser;
+package com.e.lab.ui.login;
 
 /**
  * Class that requests authentication and user information from the remote data source and

@@ -7,9 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.e.lab.R;
-import com.e.lab.data.LoginRepository;
-import com.e.lab.data.Result;
-import com.e.lab.data.model.LoggedInUser;
 
 public class LoginViewModel extends ViewModel {
 

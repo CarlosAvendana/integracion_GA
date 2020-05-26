@@ -177,13 +177,13 @@ public class AdmCursoActivity extends AppCompatActivity implements CursoAdapter.
             if (viewHolder instanceof CursoAdapter.MyViewHolder) {
                 // get the removed item name to display it in snack bar
                 String name = cursoList.get(viewHolder.getAdapterPosition()).getNombre();
-                String delete= cursoList.get(viewHolder.getAdapterPosition()).getCodigo();
+                String delete = cursoList.get(viewHolder.getAdapterPosition()).getCodigo();
 
                 // save the index deleted
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
-                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso?cursoCodigo="+delete, new AsyncResponse() {
+                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso?cursoCodigo=" + delete, new AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
 

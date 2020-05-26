@@ -75,26 +75,25 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
             //do something
             Carrera car = new Carrera(codFld.getText().toString(), nomFld.getText().toString(), tituloFld.getText().toString());
 
-            String cod=codFld.getText().toString();
-            String nom=nomFld.getText().toString();
-            String tit=tituloFld.getText().toString();
+            String cod = codFld.getText().toString();
+            String nom = nomFld.getText().toString();
+            String tit = tituloFld.getText().toString();
 
             JSONObject carreer = new JSONObject();
             try {
-                carreer.put("codigo",cod);
-                carreer.put("nombre",nom);
-                carreer.put("titulo",tit);
+                carreer.put("codigo", cod);
+                carreer.put("nombre", nom);
+                carreer.put("titulo", tit);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?codigo="+cod+"&nombre="+nom+
-                    "&titulo="+tit, new AsyncResponse() {
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera", new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
 
                 }
             });
-            net.execute(NetManager.PUT,carreer.toString());
+            net.execute(NetManager.PUT, carreer.toString());
 
             Intent intent = new Intent(getBaseContext(), AdmCarreraActivity.class);
             //sending carrera data
@@ -108,15 +107,15 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
         if (validateForm()) {
             Carrera car = new Carrera(codFld.getText().toString(), nomFld.getText().toString(), tituloFld.getText().toString());
 
-            String cod=codFld.getText().toString();
-            String nom=nomFld.getText().toString();
-            String tit=tituloFld.getText().toString();
+            String cod = codFld.getText().toString();
+            String nom = nomFld.getText().toString();
+            String tit = tituloFld.getText().toString();
 
             JSONObject carreer = new JSONObject();
             try {
-                carreer.put("codigo",cod);
-                carreer.put("nombre",nom);
-                carreer.put("titulo",tit);
+                carreer.put("codigo", cod);
+                carreer.put("nombre", nom);
+                carreer.put("titulo", tit);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -126,7 +125,7 @@ public class AddUpdCarreraActivity extends AppCompatActivity {
 
                 }
             });
-            net.execute(NetManager.POST,carreer.toString());
+            net.execute(NetManager.POST, carreer.toString());
 
             Intent intent = new Intent(getBaseContext(), AdmCarreraActivity.class);
             //sending carrera data

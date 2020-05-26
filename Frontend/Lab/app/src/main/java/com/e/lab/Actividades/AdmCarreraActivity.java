@@ -40,7 +40,8 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
 
     private RecyclerView mRecyclerView;
     private CarrerasAdapter mAdapter;
-    private List<Carrera> carreraList= new ArrayList<>();;
+    private List<Carrera> carreraList = new ArrayList<>();
+    ;
     private ModelData model;
     private SearchView searchView;
 
@@ -173,7 +174,7 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
-                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?codigo="+delete, new AsyncResponse() {
+                NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Carrera?codigo=" + delete, new AsyncResponse() {
                     @Override
                     public void processFinish(String output) {
 

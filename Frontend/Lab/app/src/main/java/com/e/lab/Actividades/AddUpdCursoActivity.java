@@ -9,9 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.e.lab.AccesoDatos.AsyncResponse;
+import com.e.lab.AccesoDatos.NetManager;
 import com.e.lab.LogicaNeg.Curso;
 import com.e.lab.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AddUpdCursoActivity extends AppCompatActivity {
 
@@ -102,6 +107,36 @@ public class AddUpdCursoActivity extends AppCompatActivity {
                     Integer.parseInt(horasFld.getText().toString()));
 
 
+            String cod = codFld.getText().toString();
+            String carrera_codigo_ = carrera_codigo.getText().toString();
+            String anio_ = anio.getText().toString();
+            String ciclo_ = ciclo.getText().toString();
+            String nombre = nomFld.getText().toString();
+            int creditos = Integer.parseInt(creditosFld.getText().toString());
+            int horas_ = Integer.parseInt(horasFld.getText().toString());
+
+            JSONObject curso_ = new JSONObject();
+            try {
+                curso_.put("codigo", cod);
+                curso_.put("carrera_codigo", carrera_codigo_);
+                curso_.put("anio", anio_);
+                curso_.put("ciclo", ciclo_);
+                curso_.put("nombre", nombre);
+                curso_.put("creditos", creditos);
+                curso_.put("horas_semanales", horas_);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso", new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+
+                }
+            });
+            net.execute(NetManager.PUT, curso_.toString());
+
+
             Intent intent = new Intent(getBaseContext(), AdmCursoActivity.class);
             //sending curso data
             intent.putExtra("addCurso", cur);
@@ -119,6 +154,38 @@ public class AddUpdCursoActivity extends AppCompatActivity {
                     nomFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()),
                     Integer.parseInt(horasFld.getText().toString()));
+
+
+            String cod = codFld.getText().toString();
+            String carrera_codigo_ = carrera_codigo.getText().toString();
+            String anio_ = anio.getText().toString();
+            String ciclo_ = ciclo.getText().toString();
+            String nombre = nomFld.getText().toString();
+            int creditos = Integer.parseInt(creditosFld.getText().toString());
+            int horas_ = Integer.parseInt(horasFld.getText().toString());
+
+            JSONObject curso_ = new JSONObject();
+            try {
+                curso_.put("codigo", cod);
+                curso_.put("carrera_codigo", carrera_codigo_);
+                curso_.put("anio", anio_);
+                curso_.put("ciclo", ciclo_);
+                curso_.put("nombre", nombre);
+                curso_.put("creditos", creditos);
+                curso_.put("horas_semanales", horas_);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Curso", new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+
+                }
+            });
+            net.execute(NetManager.POST, curso_.toString());
+
+
             Intent intent = new Intent(getBaseContext(), AdmCursoActivity.class);
             //sending curso data
             intent.putExtra("editCurso", cur);
