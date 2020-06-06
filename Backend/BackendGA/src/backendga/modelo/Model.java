@@ -17,7 +17,10 @@ import javax.swing.DefaultComboBoxModel;
 public class Model extends Observable {
 
     private Usuario user;
-    
+    GestorCurso gestorCurso;
+    GestorCarrera gestorCarrera;
+    GestorUsuario gestorUsuario;
+
     public Model(Usuario user) {
         this.user = user;
     }
@@ -44,8 +47,6 @@ public class Model extends Observable {
     //------------------------------------------------------------
     //------------------- MODEL CARRERA---------------------------
     //------------------------------------------------------------
-
-
     public GestorCarrera getGestorCarrera() {
         return gestorCarrera;
     }
@@ -57,8 +58,7 @@ public class Model extends Observable {
     //------------------------------------------------------------
     //-----------------------MODEL CURSO--------------------------
     //------------------------------------------------------------
-    
-     public TablaCurso getTablaCurso() {
+    public TablaCurso getTablaCurso() {
         return tablaCurso;
     }
 
@@ -87,8 +87,15 @@ public class Model extends Observable {
         this.CBCarrera = new DefaultComboBoxModel(carreras.toArray());
         this.commit();
     }
-    
-    
+
+    public GestorUsuario getGestorUsuario() {
+        return gestorUsuario;
+    }
+
+    public void setGestorUsuario(GestorUsuario gestorUsuario) {
+        this.gestorUsuario = gestorUsuario;
+    }
+
     @Override
     public void addObserver(java.util.Observer o) {
         super.addObserver(o);
@@ -100,18 +107,16 @@ public class Model extends Observable {
         setChanged();
         notifyObservers();
     }
+
     public Model() {
         this.user = new Usuario();
-        this.gestorCarrera = new GestorCarrera();      
+        this.gestorCarrera = new GestorCarrera();
         this.gestorCurso = new GestorCurso();
+        this.gestorUsuario = new GestorUsuario();
         this.tablaCurso = new TablaCurso(new ArrayList());
         this.CBCarrera = new DefaultComboBoxModel<>();
     }
 
-    
-     GestorCurso gestorCurso;
-    GestorCarrera gestorCarrera;
-     private TablaCurso tablaCurso;
-    
+    private TablaCurso tablaCurso;
     ComboBoxModel<String> CBCarrera;
 }
