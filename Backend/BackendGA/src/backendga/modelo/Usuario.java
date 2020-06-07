@@ -5,12 +5,21 @@ public class Usuario {
     private int cedula;
     private String contrasena;
     private String nombre;
+    private boolean isvalido;
 
     public Usuario() {
         this.cedula = 0;
         this.contrasena = new String();
         this.nombre = new String();
+        isvalido=false;
 
+    }
+
+    public Usuario(int cedula, String contrasena, String nombre, boolean isvalido) {
+        this.cedula = cedula;
+        this.contrasena = contrasena;
+        this.nombre = nombre;
+        this.isvalido = isvalido;
     }
 
     public Usuario(int cedula, String contrasena, String nombre) {
@@ -46,6 +55,14 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isIsvalido() {
+        return isvalido;
+    }
+
+    public void setIsvalido(boolean isvalido) {
+        this.isvalido = isvalido;
     }
 
     @Override

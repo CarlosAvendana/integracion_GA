@@ -84,8 +84,7 @@ public class Server_Movil_Curso extends HttpServlet {
         if (Integer.parseInt(opc) == 1) {
 
             try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                //out.println("<h1>Se consultará </h1>");
+                
                 Curso cur = modelo.getGestorCurso().recuperarCurso(codigo);
 
                 JSONObject cursoJSON = new JSONObject();
@@ -102,8 +101,7 @@ public class Server_Movil_Curso extends HttpServlet {
             }
         } else {
             try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                //out.println("<h1>Se listará </h1>");
+              
                 List<Curso> _lista_cursos = modelo.getGestorCurso().listarCurso();
                 JSONArray _curso_array_JS = new JSONArray();
 

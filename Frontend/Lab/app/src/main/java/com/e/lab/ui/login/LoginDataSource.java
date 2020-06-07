@@ -1,7 +1,12 @@
 package com.e.lab.ui.login;
 
+import com.e.lab.AccesoDatos.AsyncResponse;
 import com.e.lab.AccesoDatos.ModelData;
+import com.e.lab.AccesoDatos.NetManager;
 import com.e.lab.LogicaNeg.Usuario;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,12 +19,31 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
-            boolean bandera = validarUsuario(username, password);
 
-            if (bandera) {
+            final Usuario isValido= new Usuario(false);
+            JSONObject user = new JSONObject();
+            try {
+                user.put("cedula", username);
+                user.put("contrasena", password);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Usuario", new AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+                    try {
+                        JSONObject jsonUser = new JSONObject(output);
+                        isValido.setIsvalido(jsonUser.getBoolean("isvalido"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            net.execute(NetManager.POST, user.toString());
+
+            if (isValido.isIsvalido()) {
                 Usuario validadoCorrecto = obtenerDatos(username, password);
-                LoggedInUser fakeUser = new LoggedInUser(java.util.UUID.randomUUID().toString(), validadoCorrecto.getPrivilegio());
+                LoggedInUser fakeUser = new LoggedInUser(java.util.UUID.randomUUID().toString(), "Usuario");
                 return new Result.Success<>(fakeUser);
             } else {
 

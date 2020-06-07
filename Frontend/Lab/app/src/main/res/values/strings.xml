@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Gestión Académica</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Usuario</string>
+    <string name="prompt_email">Cedula</string>
     <string name="prompt_password">Clave</string>
     <string name="action_sign_in">Entrar</string>
     <string name="action_sign_in_short">Entrar</string>

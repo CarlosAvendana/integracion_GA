@@ -1,14 +1,19 @@
 package Controller;
 
 import backendga.modelo.Model;
+import backendga.modelo.Usuario;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 public class Server_Movil_Usuario extends HttpServlet {
+
+    private Gson gson = new Gson();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,36 +38,27 @@ public class Server_Movil_Usuario extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Model model = new Model();
 
-        String _nombreUsuario = request.getParameter("codigo");
-        String _contrasena = request.getParameter("carreracodigo");
+        Usuario user = gson.fromJson(request.getReader(), Usuario.class);
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //out.println("<h5>Se modificara </h5>");
-            //  out.println("<h5>String " + p.getId() + p.getNombre() + "</h5>");
-            boolean isValid = model.validaUsuario(Integer.parseInt(_nombreUsuario), _contrasena);
 
-            JSONObject isValidBoolean = new JSONObject();
+            boolean isValid = model.validaUsuario(user.getCedula(), user.getContrasena());
+
+            JSONObject usuarioIsValid = new JSONObject();
 
             if (isValid) {
-                isValidBoolean.put("sesion", true);
+                usuarioIsValid.put("isvalido", true);
+                
             } else {
-                isValidBoolean.put("sesion", true);
+                usuarioIsValid.put("isvalido", false);
             }
-            out.print(isValidBoolean);
+            out.print(usuarioIsValid);
 
         }
 

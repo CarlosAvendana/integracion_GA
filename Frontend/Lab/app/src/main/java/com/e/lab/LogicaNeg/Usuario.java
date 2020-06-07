@@ -7,6 +7,7 @@ public class Usuario implements Serializable {
     private String correo;
     private String contraseña;
     private String cedula;
+    private boolean isvalido;
     private String privilegio;
 
     public Usuario() {
@@ -15,11 +16,23 @@ public class Usuario implements Serializable {
         this.privilegio = "none";
     }
 
+    public Usuario(boolean isvalido) {
+        this.isvalido = isvalido;
+    }
+
     public Usuario(String correo, String contraseña, String privilegio, String cedula) {
         this.correo = correo;
         this.contraseña = contraseña;
         this.cedula = cedula;
         this.privilegio = privilegio;
+    }
+
+    public boolean isIsvalido() {
+        return isvalido;
+    }
+
+    public void setIsvalido(boolean isvalido) {
+        this.isvalido = isvalido;
     }
 
     public String getCorreo() {
