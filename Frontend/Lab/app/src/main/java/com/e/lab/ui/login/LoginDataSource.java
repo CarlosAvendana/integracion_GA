@@ -20,7 +20,7 @@ public class LoginDataSource {
 
         try {
 
-            final Usuario isValido= new Usuario(false);
+            final Usuario validUser= new Usuario(false);
             JSONObject user = new JSONObject();
             try {
                 user.put("cedula", username);
@@ -31,17 +31,16 @@ public class LoginDataSource {
             NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Usuario", new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
-                    try {
-                        JSONObject jsonUser = new JSONObject(output);
-                        isValido.setIsvalido(jsonUser.getBoolean("isvalido"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+            }
             });
-            net.execute(NetManager.POST, user.toString());
-
-            if (isValido.isIsvalido()) {
+           String result = net.execute(NetManager.POST, user.toString()).get();
+            try {
+                JSONObject jsonUser = new JSONObject(result);
+                validUser.setIsvalido(jsonUser.getBoolean("isvalido"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (validUser.isIsvalido()) {
                 Usuario validadoCorrecto = obtenerDatos(username, password);
                 LoggedInUser fakeUser = new LoggedInUser(java.util.UUID.randomUUID().toString(), "Usuario");
                 return new Result.Success<>(fakeUser);

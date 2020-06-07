@@ -182,7 +182,6 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
                 });
                 net.execute(NetManager.DELETE);
 
-
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
 
             }
