@@ -159,7 +159,7 @@ public class CarrerasAdapter extends RecyclerView.Adapter<CarrerasAdapter.MyView
         public MyViewHolder(View view) {
             super(view);
             icono = view.findViewById(R.id.icono_);
-            icono.setImageResource(R.drawable.escuela);
+            icono.setImageResource(R.drawable.ic_school);
             title1 = view.findViewById(R.id.titleFirstLbl);
             title2 = view.findViewById(R.id.titleSecLbl);
             description = view.findViewById(R.id.descriptionLbl);

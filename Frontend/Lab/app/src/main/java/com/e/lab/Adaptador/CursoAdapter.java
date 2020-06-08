@@ -158,7 +158,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
         public MyViewHolder(View view) {
             super(view);
             icono = view.findViewById(R.id.icono_);
-            icono.setImageResource(R.drawable.books);
+            icono.setImageResource(R.drawable.ic_school);
             titulo1 = view.findViewById(R.id.titleFirstLbl);
             titulo2 = view.findViewById(R.id.titleSecLbl);
             description = view.findViewById(R.id.descriptionLbl);
