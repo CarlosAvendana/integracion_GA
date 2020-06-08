@@ -33,7 +33,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/nombreAddUptCur"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -46,7 +51,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/codigoAddUpdCur"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -59,7 +69,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/creditoAddUptCur"
-                android:inputType="number" />
+                android:inputType="number"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +87,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/horaAddUptCur"
-                android:inputType="number" />
+                android:inputType="number"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -85,7 +105,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Carrera codigo"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -98,7 +123,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Año"
-                android:inputType="number" />
+                android:inputType="number"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -111,7 +141,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Ciclo"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

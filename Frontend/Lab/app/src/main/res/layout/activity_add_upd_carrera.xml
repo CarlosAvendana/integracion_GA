@@ -32,7 +32,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/nombreAddUptCar"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +50,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/codigoAddUpdCar"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +68,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/tituloAddUptCar"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
