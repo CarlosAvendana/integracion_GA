@@ -20,7 +20,7 @@ public class LoginDataSource {
 
         try {
 
-            final Usuario validUser= new Usuario(false);
+            final Usuario validUser = new Usuario(false);
             JSONObject user = new JSONObject();
             try {
                 user.put("cedula", username);
@@ -31,9 +31,9 @@ public class LoginDataSource {
             NetManager net = new NetManager("http://192.168.100.10:8084/GestionAcademica/Server_Movil_Usuario", new AsyncResponse() {
                 @Override
                 public void processFinish(String output) {
-            }
+                }
             });
-           String result = net.execute(NetManager.POST, user.toString()).get();
+            String result = net.execute(NetManager.POST, user.toString()).get();
             try {
                 JSONObject jsonUser = new JSONObject(result);
                 validUser.setIsvalido(jsonUser.getBoolean("isvalido"));

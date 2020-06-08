@@ -36,12 +36,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAdapter.CarreraAdapterListener, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+public class AdmCarreraActivity extends AppCompatActivity
+        implements CarrerasAdapter.CarreraAdapterListener, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     private RecyclerView mRecyclerView;
     private CarrerasAdapter mAdapter;
     private List<Carrera> carreraList = new ArrayList<>();
-    ;
     private ModelData model;
     private SearchView searchView;
 
@@ -54,13 +54,9 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         getSupportActionBar().setTitle("Carreras");
 
         mRecyclerView = findViewById(R.id.recycler_carrerasFld);
-        //carreraList = new ArrayList<>();
+
         model = new ModelData();
-//        carreraList = model.getCarreraList();
-//        mAdapter = new CarrerasAdapter(carreraList, this);
-
         whiteNotificationBar(mRecyclerView);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -87,7 +83,6 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
             }
         });
         net.execute(NetManager.GET);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,18 +90,9 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
                 goToAddUpdCarrera();
             }
         });
-
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
-
-
-        // Receive the Carrera sent by AddUpdCarreraActivity
         checkIntentInformation();
-
-        //refresh view
-        // mAdapter.notifyDataSetChanged();
-
-
     }
 
     private void whiteNotificationBar(View view) {
@@ -202,7 +188,6 @@ public class AdmCarreraActivity extends AppCompatActivity implements CarrerasAda
         mAdapter.onItemMove(source, target);
     }
 
-    //------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds carreraList to the action bar if it is present.
