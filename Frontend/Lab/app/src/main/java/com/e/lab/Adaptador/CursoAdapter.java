@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -152,10 +153,12 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.MyViewHolder
         public TextView titulo1, titulo2, description;
         //two layers
         public RelativeLayout viewForeground, viewBackgroundDelete, viewBackgroundEdit;
-
+        public ImageView icono;
 
         public MyViewHolder(View view) {
             super(view);
+            icono = view.findViewById(R.id.icono_);
+            icono.setImageResource(R.drawable.books);
             titulo1 = view.findViewById(R.id.titleFirstLbl);
             titulo2 = view.findViewById(R.id.titleSecLbl);
             description = view.findViewById(R.id.descriptionLbl);
